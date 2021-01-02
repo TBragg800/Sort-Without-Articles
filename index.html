@@ -22,7 +22,7 @@
       font-size: 20px;
       background: white;
       width: 500px;
-      margin: auto;
+      margin: 30px auto 30px auto;
       padding: 0;
       box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
     }
@@ -46,8 +46,26 @@
   <ul id="bands"></ul>
 
 <script>
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+const bands = ['The Strokes', 'Alian Johannes', 'Nine Inch Nails', "A Band Named After My Dogs", "An East Nashville Band", 'Black Rebel Motorcycle Club', 'The Charlatans UK', 'Misfits', 'The Beatles', 'The Arctic Monkeys', 'De Staat', 'Demob Happy', 'Bjork', 'Fontaines D.C.', 'George Michael'];
 
+function strip(bandName) {
+  return bandName.replace(/^(a |the |an )/i, "").trim();//reg-ex insensitive
+}
+
+// const sortedBands = bands.sort(function(a, b) {
+//   if (strip(a) > strip(b)) {
+//     return 1;
+//   } else {
+//     return -1;
+//   }
+// });
+
+//better
+const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1 );
+
+document.querySelector("#bands").innerHTML = sortedBands.map(band => 
+  `<li> ${band}</li>`
+).join("");
 
 </script>
 
